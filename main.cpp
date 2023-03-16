@@ -11,13 +11,18 @@ int main()
 
     alarmLed = OFF;
 
+    printf("%s\n","Hello World");
+
     while (true) {
         if ( gasDetector == ON ) {
             alarmLed = ON;
+            printf("%s\n","Alarm ON.");
         }
         
         if ( gasDetector == OFF ) {
             alarmLed = OFF;
+            printf("%s\n","Alarm OFF.");
         }
+
     }
 }
