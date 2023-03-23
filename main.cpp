@@ -14,24 +14,24 @@
 
 int main()
 {
-    DigitalIn gasDetector(D2);
+    DigitalIn gasDetector(D2); //Constructor from a pin selected.
 
-    DigitalOut alarmLed(LED1);
+    DigitalOut alarmLed(LED1); //Constructor from a pin selected.
 
-    gasDetector.mode(PullDown);
+    gasDetector.mode(PullDown); //Sending message 'mode' to object gasDetector.
 
-    alarmLed = OFF;
+    alarmLed = OFF; //Sending message '= OFF' to object alarmLed.
 
-    printf("%s\n","Hello World");
+    printf("%s\n","Hello World"); 
 
     while (true) {
-        if ( gasDetector == ON ) {
-            alarmLed = ON;
+        if ( gasDetector == ON ) { //Sending message '== ON' to object gasDetector to verify gasDetector status.
+            alarmLed = ON; //Sending message '= ON' to object alarmLed.
             printf("%s\n","Alarm ON.");
         }
         
-        if ( gasDetector == OFF ) {
-            alarmLed = OFF;
+        if ( gasDetector == OFF ) { //Sending message '== OFF' to object gasDetector to verify gasDetector status.
+            alarmLed = OFF; //Sending message '= OFF' to object alarmLed.
             printf("%s\n","Alarm OFF.");
         }
 
