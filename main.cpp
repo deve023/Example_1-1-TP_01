@@ -1,8 +1,8 @@
 /*! @mainpage Example 1.1 Activate the alarm when gas is detected
- * @date Thursday, March 16, 2023
+ * @date Thursday, March 23, 2023
  * @authors Agustin de Vedia & Ulises Montenegro
  *
- * @note TP01 Implemented in class.
+ * @note TP02 Implemented in C in class.
  * When input D2 is ON, alarm output is turned ON and viceversa.
  * Gas detector: D2
  * Alarm: LED1
@@ -14,24 +14,53 @@
 
 int main()
 {
-    DigitalIn gasDetector(D2);
+    //----C++-----
+    //DigitalIn gasDetector(D2);
+    //  gasDetector.mode(PullDown);
+    //-----PseudoCodigo-----
+    // Set pin D2 (PF_15) as input
+    // Set PF_15 as PullDown
+ 
+    gpio_t gasDetector;
+    gpio_init_in_ex(&gasDetector, D2, PullDown);
 
-    DigitalOut alarmLed(LED1);
+    //------C++--------
+    //DigitalOut alarmLed(LED1); 
+    //-------PseudoCodigo------
+    // Set pin LED1 (PB_0) as output
 
-    gasDetector.mode(PullDown);
+    gpio_t led1;
+    gpio_init_out(&led1, LED1);
 
-    alarmLed = OFF;
+
+    //-----C++-------
+    //alarmLed = OFF;
+    //-----PseudoCodigo-------
+    // Clear PB_0
+    gpio_write(&led1, 0);
 
     printf("%s\n","Hello World");
 
     while (true) {
-        if ( gasDetector == ON ) {
-            alarmLed = ON;
+       //------C++-------- 
+    /*  if ( gasDetector == ON ) { 
+            alarmLed = ON; //*
+            printf("%s\n","Alarm ON.");
+        }*/
+        
+        if(gpio_read(&gasDetector) == 1){
+            gpio_write(&led1, 1);
             printf("%s\n","Alarm ON.");
         }
         
-        if ( gasDetector == OFF ) {
-            alarmLed = OFF;
+        //-------C++----------
+        /*if ( gasDetector == OFF ) { 
+            alarmLed = OFF; 
+            printf("%s\n","Alarm OFF.");
+        }*/
+
+        if(gpio_read(&gasDetector) == 0){
+            gpio_write(&led1, 0);
             printf("%s\n","Alarm OFF.");
         }
 
