@@ -7,6 +7,14 @@
  * Gas detector: D2
  * Alarm: LED1
  *
+ * @brief Useful bits of code
+ * 
+ * @note DigitalIn.cpp : "/home/studio/workspace/Example_1-1-TP_01/mbed-os/drivers/source/DigitalIn.cpp"
+ *  Line 26 : core_util_critical_section_enter();
+ *  Line 28 : core_util_critical_section_exit();
+ *  These two functions makes sure the block of code in between them is executed at once without interruptions.
+ *  Useful when modifying sensible registers.
+ *
  */
 
 #include "mbed.h"
@@ -20,7 +28,8 @@ int main()
     //-----PseudoCodigo-----
     // Set pin D2 (PF_15) as input
     // Set PF_15 as PullDown
- 
+    
+    // @note gpio_t is a struct ("/home/studio/workspace/Example_1-1-TP_01/mbed-os/targets/TARGET_STM/gpio_object.h")
     gpio_t gasDetector;
     gpio_init_in_ex(&gasDetector, D2, PullDown);
 
